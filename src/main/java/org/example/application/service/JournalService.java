@@ -55,4 +55,8 @@ public class JournalService {
                 lessonEntities.stream().map(Mapper::toLessonModel).toList(),
                 teams);
     }
+
+    public Integer createLesson(Long date) throws SQLException {
+        return lessonDao.createLesson(date);
+    }
 }
