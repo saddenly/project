@@ -9,7 +9,7 @@ public class LessonDao extends DaoBase {
 
     private static final String LESSON_ID_COLUMN_NAME = "id";
     private static final String DATE_COLUMN_NAME = "lesson_date";
-    private static final String TABLE_NAME = "lesson";
+    private static final String TABLE_NAME = "Lesson";
 
     private static final String SELECT_FROM_LESSON_SCRIPT = "SELECT * FROM " + TABLE_NAME;
     private static final String INSERT_INTO_LESSON_SCRIPT = "INSERT INTO " + TABLE_NAME + " (" + DATE_COLUMN_NAME + ") VALUES (?)";

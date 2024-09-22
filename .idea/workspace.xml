@@ -155,7 +155,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727033585441</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="add attendance log creation functionality">
+      <option name="closed" value="true" />
+      <created>1727035164662</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727035164662</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -176,6 +184,7 @@
     <MESSAGE value="add db script" />
     <MESSAGE value="fix servlets' urls" />
     <MESSAGE value="add lesson creation functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="add lesson creation functionality" />
+    <MESSAGE value="add attendance log creation functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="add attendance log creation functionality" />
   </component>
 </project>
