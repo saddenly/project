@@ -57,6 +57,11 @@ public class JournalService {
     }
 
     public Integer createLesson(Long date) throws SQLException {
+        // TODO: add validation for dates in past?
         return lessonDao.createLesson(date);
+    }
+
+    public Integer createAttendanceLog(Integer studentId, Integer lessonId, Boolean isAttended) throws SQLException {
+        return attendanceLogDao.createAttendanceLog(studentId, lessonId, isAttended);
     }
 }
