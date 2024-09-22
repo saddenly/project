@@ -15,7 +15,7 @@ import org.example.presentation.mappers.Mapper;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/journal")
+@WebServlet("api/v1/journal")
 public class JournalServlet extends HttpServlet {
     @Override
     public void init(ServletConfig config) throws ServletException {
