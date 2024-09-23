@@ -17,6 +17,8 @@ import java.sql.SQLException;
 
 @WebServlet("/api/v1/journal")
 public class JournalServlet extends HttpServlet {
+
+    // TODO: move to some ServletBase class.
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -29,7 +31,6 @@ public class JournalServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        setCorsHeaders(resp);
         try {
             JournalDto journal = Mapper.toJournalDto(getService().getJournal());
 
@@ -42,14 +43,10 @@ public class JournalServlet extends HttpServlet {
         }
     }
 
+    // TODO: move to some ServletBase class.
     private void setJsonResponseHeaders(HttpServletResponse response) {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
-    }
-    private void setCorsHeaders(HttpServletResponse response) {
-        response.setHeader("Access-Control-Allow-Origin", "*");
-        response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
     }
 
     private JournalService getService() {

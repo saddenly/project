@@ -13,7 +13,7 @@ public class AttendanceLogDao extends DaoBase {
     private static final String TABLE_NAME = "AttendanceLog";
 
     private static final String SELECT_FROM_ATTENDANCE_LOG_SCRIPT = "SELECT * FROM " + TABLE_NAME;
-    private static final String INSERT_INTO_ATTENDANCE_LOG_SCRIPT =  "INSERT INTO " + TABLE_NAME + " ("
+    private static final String INSERT_INTO_ATTENDANCE_LOG_SCRIPT = "INSERT INTO " + TABLE_NAME + " ("
             + STUDENT_ID_COLUMN_NAME + ", "
             + LESSON_ID_COLUMN_NAME + ", "
             + ATTENDED_COLUMN_NAME + ") VALUES (?, ?, ?)";
@@ -34,52 +34,53 @@ public class AttendanceLogDao extends DaoBase {
         });
     }
 
-   public Integer createAttendanceLog(Integer studentId, Integer lessonId, Boolean isAttended) throws SQLException {
-       Connection connection = null;
-       try {
-           connection = getConnection();
-           connection.setAutoCommit(false);
+    // TODO: move generic logic of INSERT to base.
+    public Integer createAttendanceLog(Integer studentId, Integer lessonId, Boolean isAttended) throws SQLException {
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            connection.setAutoCommit(false);
 
-           try (PreparedStatement stmt = connection.prepareStatement(INSERT_INTO_ATTENDANCE_LOG_SCRIPT, Statement.RETURN_GENERATED_KEYS)) {
-               stmt.setInt(1, studentId);
-               stmt.setInt(2, lessonId);
-               stmt.setBoolean(3, isAttended);
+            try (PreparedStatement stmt = connection.prepareStatement(INSERT_INTO_ATTENDANCE_LOG_SCRIPT, Statement.RETURN_GENERATED_KEYS)) {
+                stmt.setInt(1, studentId);
+                stmt.setInt(2, lessonId);
+                stmt.setBoolean(3, isAttended);
 
-               int affectedRows = stmt.executeUpdate();
-               if (affectedRows == 0) {
-                   throw new SQLException("Creating attendance log failed, no rows affected.");
-               }
+                int affectedRows = stmt.executeUpdate();
+                if (affectedRows == 0) {
+                    throw new SQLException("Creating attendance log failed, no rows affected.");
+                }
 
-               int attendanceLogId;
-               try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
-                   if (generatedKeys.next()) {
-                       attendanceLogId = generatedKeys.getInt(1);
-                   } else {
-                       throw new SQLException("Creating attendance log failed, no ID obtained.");
-                   }
-               }
+                int attendanceLogId;
+                try (ResultSet generatedKeys = stmt.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        attendanceLogId = generatedKeys.getInt(1);
+                    } else {
+                        throw new SQLException("Creating attendance log failed, no ID obtained.");
+                    }
+                }
 
-               connection.commit();
-               return attendanceLogId;
-           }
-       } catch (Exception e) {
-           if (connection != null) {
-               try {
-                   connection.rollback();
-               } catch (SQLException rollbackEx) {
-                   e.addSuppressed(rollbackEx);
-               }
-           }
+                connection.commit();
+                return attendanceLogId;
+            }
+        } catch (Exception e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException rollbackEx) {
+                    e.addSuppressed(rollbackEx);
+                }
+            }
 
-           throw e;
-       } finally {
-           if (connection != null) {
-               try {
-                   connection.close();
-               } catch (SQLException e) {
-                   e.printStackTrace();
-               }
-           }
-       }
-   }
+            throw e;
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }

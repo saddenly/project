@@ -26,6 +26,7 @@ public class LessonDao extends DaoBase {
         });
     }
 
+    // TODO: move generic logic of INSERT to base.
     public int createLesson(Long date) throws SQLException {
         Connection connection = null;
         try {
