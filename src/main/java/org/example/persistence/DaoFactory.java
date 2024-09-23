@@ -6,7 +6,7 @@ import org.example.persistence.daos.StudentDao;
 import org.example.persistence.daos.TeamDao;
 
 public class DaoFactory {
-    private final static String URL = "jdbc:mysql://13.60.168.31:3306/journal";
+    private final static String URL = "jdbc:mysql://13.51.198.77/journal";
     private final static String USER_NAME = "newuser";
     private final static String PASSWORD = "password";
 
