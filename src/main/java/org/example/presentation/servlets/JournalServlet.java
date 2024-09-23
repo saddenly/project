@@ -31,6 +31,8 @@ public class JournalServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        setCorsHeaders(resp);
+
         try {
             JournalDto journal = Mapper.toJournalDto(getService().getJournal());
 
@@ -41,6 +43,18 @@ public class JournalServlet extends HttpServlet {
         } catch (SQLException e) {
             throw new ServletException("Error retrieving journal", e);
         }
+    }
+
+    @Override
+    protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        setCorsHeaders(resp);
+        resp.setStatus(HttpServletResponse.SC_OK);
+    }
+
+    private void setCorsHeaders(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     }
 
     // TODO: move to some ServletBase class.
