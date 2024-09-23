@@ -29,14 +29,20 @@ public class LessonServlet extends HttpServlet {
     }
 
     @Override
+    protected void doOptions(HttpServletRequest request, HttpServletResponse response) {
+        setCorsHeaders(response);
+        response.setStatus(HttpServletResponse.SC_OK);
+    }
+
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        setCorsHeaders(response);
         try {
             ObjectMapper mapper = new ObjectMapper();
             LessonRequest lessonRequest = mapper.readValue(request.getInputStream(), LessonRequest.class);
             Integer lessonId = getService().createLesson(lessonRequest.getLessonDate());
 
             setJsonResponseHeaders(response);
-
             mapper.writeValue(response.getOutputStream(), new LessonDto(lessonId, lessonRequest.getLessonDate()));
         } catch (SQLException e) {
             throw new ServletException("Error creating lesson", e);
@@ -48,7 +54,14 @@ public class LessonServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
     }
 
+    private void setCorsHeaders(HttpServletResponse response) {
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+        response.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    }
+
     private JournalService getService() {
         return ServiceFactory.createJournalService();
     }
 }
+
