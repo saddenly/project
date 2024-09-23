@@ -54,6 +54,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.journal [package].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "Smart Tomcat.tomcat.executor": "Run",
     "git-widget-placeholder": "main",
@@ -69,6 +70,11 @@
     ]
   }
 }]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn package" />
+    </option>
+  </component>
   <component name="RunManager">
     <configuration name="tomcat" type="com.poratu.idea.plugins.tomcat">
       <predefined_log_file enabled="true" id="Tomcat Localhost Log" />
@@ -163,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727035164662</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add credentials for db">
+      <option name="closed" value="true" />
+      <created>1727036009250</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1727036009250</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -185,6 +199,7 @@
     <MESSAGE value="fix servlets' urls" />
     <MESSAGE value="add lesson creation functionality" />
     <MESSAGE value="add attendance log creation functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="add attendance log creation functionality" />
+    <MESSAGE value="add credentials for db" />
+    <option name="LAST_COMMIT_MESSAGE" value="add credentials for db" />
   </component>
 </project>
