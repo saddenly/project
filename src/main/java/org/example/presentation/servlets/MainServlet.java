@@ -35,6 +35,12 @@ public class MainServlet extends HttpServlet {
     }
 
     @Override
+    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
+        setJsonResponseHeaders(resp);
+        processRequest(req, resp);
+    }
+
+    @Override
     protected void doOptions(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         setJsonResponseHeaders(resp);
         processRequest(req, resp);

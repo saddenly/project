@@ -19,6 +19,7 @@ public class CommandFactory {
         Map<String, Command> lessonCommands = new HashMap<>();
         lessonCommands.put("OPTIONS", new LessonOptionsCommand());
         lessonCommands.put("POST", new LessonPostCommand());
+        lessonCommands.put("DELETE", new LessonDeleteCommand());
         commands.put("/api/v1/lesson", lessonCommands);
     }
 
