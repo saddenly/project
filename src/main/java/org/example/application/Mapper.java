@@ -17,7 +17,7 @@ public class Mapper {
     }
 
     public static StudentModel toStudentModel(StudentEntity studentEntity) {
-        return new StudentModel(studentEntity.getId(), studentEntity.getName());
+        return new StudentModel(studentEntity.getId(), studentEntity.getName(), studentEntity.getActive());
     }
 
     public static TeamModel toTeamModel(TeamEntity teamEntity, List<StudentEntity> studentEntities) {
