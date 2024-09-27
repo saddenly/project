@@ -13,7 +13,7 @@ public class Mapper {
                         .map(l -> new LessonDto(l.getId(), l.getDate()))
                         .toList(),
                 journalModel.getTeams().stream()
-                        .map(t -> new TeamDto(t.getId(), t.getName(), t.getStudents().stream().map(s -> new StudentDto(s.getId(), s.getName())).toList()))
+                        .map(t -> new TeamDto(t.getId(), t.getName(), t.getStudents().stream().map(s -> new StudentDto(s.getId(), s.getName(), s.getActive())).toList()))
                         .toList());
     }
 }

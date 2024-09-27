@@ -21,6 +21,10 @@ public class CommandFactory {
         lessonCommands.put("POST", new LessonPostCommand());
         lessonCommands.put("DELETE", new LessonDeleteCommand());
         commands.put("/api/v1/lesson", lessonCommands);
+
+        Map<String, Command> studentCommands = new HashMap<>();
+        studentCommands.put("DELETE", new StudentDeleteCommand());
+        commands.put("/api/v1/student", studentCommands);
     }
 
     public static Command getCommand(String path, String method) {

@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet({"/api/v1/journal", "/api/v1/attendancelog", "/api/v1/lesson"})
+@WebServlet({"/api/v1/journal", "/api/v1/attendancelog", "/api/v1/lesson", "/api/v1/student"})
 public class MainServlet extends HttpServlet {
 
     @Override

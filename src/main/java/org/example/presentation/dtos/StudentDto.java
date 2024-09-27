@@ -12,4 +12,5 @@ import lombok.ToString;
 public class StudentDto {
     private Integer id;
     private String name;
+    private Boolean active;
 }

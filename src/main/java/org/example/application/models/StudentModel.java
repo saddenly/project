@@ -10,4 +10,5 @@ import lombok.ToString;
 public class StudentModel {
     private final Integer id;
     private final String name;
+    private final Boolean active;
 }

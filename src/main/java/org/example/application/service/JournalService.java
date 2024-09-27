@@ -68,4 +68,8 @@ public class JournalService {
     public Integer createAttendanceLog(Integer studentId, Integer lessonId, Boolean isAttended, Double grade) throws SQLException {
         return attendanceLogDao.createAttendanceLog(studentId, lessonId, isAttended, grade);
     }
+
+    public void deleteStudent(Integer studentId) throws SQLException {
+        studentDao.deleteStudent(studentId);
+    }
 }
