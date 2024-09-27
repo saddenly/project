@@ -61,7 +61,11 @@ public class JournalService {
         return lessonDao.createLesson(date);
     }
 
-    public Integer createAttendanceLog(Integer studentId, Integer lessonId, Boolean isAttended) throws SQLException {
-        return attendanceLogDao.createAttendanceLog(studentId, lessonId, isAttended);
+    public void deleteLesson(Integer lessonId) throws SQLException {
+        lessonDao.deleteLesson(lessonId);
+    }
+
+    public Integer createAttendanceLog(Integer studentId, Integer lessonId, Boolean isAttended, Double grade) throws SQLException {
+        return attendanceLogDao.createAttendanceLog(studentId, lessonId, isAttended, grade);
     }
 }

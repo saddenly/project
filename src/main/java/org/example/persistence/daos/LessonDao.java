@@ -13,6 +13,7 @@ public class LessonDao extends DaoBase {
 
     private static final String SELECT_FROM_LESSON_SCRIPT = "SELECT * FROM " + TABLE_NAME;
     private static final String INSERT_INTO_LESSON_SCRIPT = "INSERT INTO " + TABLE_NAME + " (" + DATE_COLUMN_NAME + ") VALUES (?)";
+    private static final String DELETE_LESSON_SCRIPT = "DELETE FROM " + TABLE_NAME + " WHERE id = ?";
 
     public LessonDao(String url, String userName, String password) {
         super(url, userName, password);
@@ -62,6 +63,41 @@ public class LessonDao extends DaoBase {
                 }
             }
 
+            throw e;
+        } finally {
+            if (connection != null) {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public void deleteLesson(int lessonId) throws SQLException {
+        Connection connection = null;
+        try {
+            connection = getConnection();
+            connection.setAutoCommit(false);
+
+            try (PreparedStatement stmt = connection.prepareStatement(DELETE_LESSON_SCRIPT)) {
+                stmt.setInt(1, lessonId);
+                int affectedRows = stmt.executeUpdate();
+                if (affectedRows == 0) {
+                    throw new SQLException("Deleting lesson failed, no rows affected.");
+                }
+
+                connection.commit();
+            }
+        } catch (Exception e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException rollbackEx) {
+                    e.addSuppressed(rollbackEx);
+                }
+            }
             throw e;
         } finally {
             if (connection != null) {

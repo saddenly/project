@@ -20,13 +20,15 @@ public class AttendanceLogPostCommand implements Command {
             Integer attendanceLogId = getService().createAttendanceLog(
                     attendanceLogRequest.getStudentId(),
                     attendanceLogRequest.getLessonId(),
-                    attendanceLogRequest.getAttended());
+                    attendanceLogRequest.getAttended(),
+                    attendanceLogRequest.getGrade());
 
             mapper.writeValue(response.getOutputStream(), new AttendanceLogDto(
                     attendanceLogId,
                     attendanceLogRequest.getStudentId(),
                     attendanceLogRequest.getLessonId(),
-                    attendanceLogRequest.getAttended()));
+                    attendanceLogRequest.getAttended(),
+                    attendanceLogRequest.getGrade()));
         } catch (SQLException e) {
             throw new ServletException("Error creating attendance log", e);
         }

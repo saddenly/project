@@ -10,13 +10,15 @@ public class AttendanceLogDao extends DaoBase {
     private static final String STUDENT_ID_COLUMN_NAME = "student_id";
     private static final String LESSON_ID_COLUMN_NAME = "lesson_id";
     private static final String ATTENDED_COLUMN_NAME = "attended";
+    private static final String GRADE_COLUMN_NAME = "grade";
     private static final String TABLE_NAME = "AttendanceLog";
 
     private static final String SELECT_FROM_ATTENDANCE_LOG_SCRIPT = "SELECT * FROM " + TABLE_NAME;
     private static final String INSERT_INTO_ATTENDANCE_LOG_SCRIPT = "INSERT INTO " + TABLE_NAME + " ("
             + STUDENT_ID_COLUMN_NAME + ", "
             + LESSON_ID_COLUMN_NAME + ", "
-            + ATTENDED_COLUMN_NAME + ") VALUES (?, ?, ?)";
+            + ATTENDED_COLUMN_NAME + ", "
+            + GRADE_COLUMN_NAME + ") VALUES (?, ?, ?, ?)";
 
     public AttendanceLogDao(String url, String userName, String password) {
         super(url, userName, password);
@@ -30,12 +32,13 @@ public class AttendanceLogDao extends DaoBase {
             int studentId = result.getInt(STUDENT_ID_COLUMN_NAME);
             int lessonId = result.getInt(LESSON_ID_COLUMN_NAME);
             Boolean isAttended = result.getBoolean(ATTENDED_COLUMN_NAME);
-            return new AttendanceLogEntity(id, studentId, lessonId, isAttended);
+            Double grade = result.getDouble(GRADE_COLUMN_NAME);
+            return new AttendanceLogEntity(id, studentId, lessonId, isAttended, grade);
         });
     }
 
     // TODO: move generic logic of INSERT to base.
-    public Integer createAttendanceLog(Integer studentId, Integer lessonId, Boolean isAttended) throws SQLException {
+    public Integer createAttendanceLog(Integer studentId, Integer lessonId, Boolean isAttended, Double grade) throws SQLException {
         Connection connection = null;
         try {
             connection = getConnection();
@@ -45,6 +48,7 @@ public class AttendanceLogDao extends DaoBase {
                 stmt.setInt(1, studentId);
                 stmt.setInt(2, lessonId);
                 stmt.setBoolean(3, isAttended);
+                stmt.setDouble(4, grade);
 
                 int affectedRows = stmt.executeUpdate();
                 if (affectedRows == 0) {
