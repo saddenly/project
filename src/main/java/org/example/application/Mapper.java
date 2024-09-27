@@ -25,6 +25,6 @@ public class Mapper {
     }
 
     public static AttendanceLogModel toAttendanceLogModel(AttendanceLogEntity logEntity, StudentEntity student, LessonEntity lesson) {
-        return new AttendanceLogModel(logEntity.getId(), toStudentModel(student), toLessonModel(lesson), logEntity.getIsAttended());
+        return new AttendanceLogModel(logEntity.getId(), toStudentModel(student), toLessonModel(lesson), logEntity.getIsAttended(), logEntity.getGrade());
     }
 }

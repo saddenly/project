@@ -14,4 +14,5 @@ public class AttendanceLogDto {
     private Integer studentId;
     private Integer lessonId;
     private Boolean isAttended;
+    private Double grade;
 }

@@ -7,7 +7,7 @@ public class Mapper {
     public static JournalDto toJournalDto(JournalModel journalModel) {
         return new JournalDto(
                 journalModel.getAttendanceLogs().stream()
-                        .map(al -> new AttendanceLogDto(al.getId(), al.getStudent().getId(), al.getLesson().getId(), al.getIsAttended()))
+                        .map(al -> new AttendanceLogDto(al.getId(), al.getStudent().getId(), al.getLesson().getId(), al.getIsAttended(), al.getGrade()))
                         .toList(),
                 journalModel.getLessons().stream()
                         .map(l -> new LessonDto(l.getId(), l.getDate()))

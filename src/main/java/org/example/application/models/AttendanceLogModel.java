@@ -12,4 +12,5 @@ public class AttendanceLogModel {
     private final StudentModel student;
     private final LessonModel lesson;
     private final Boolean isAttended;
+    private final Double grade;
 }

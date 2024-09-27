@@ -13,4 +13,5 @@ public class AttendanceLogRequest {
     private Integer studentId;
     private Integer lessonId;
     private Boolean attended;
+    private Double grade;
 }
